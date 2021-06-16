@@ -45,5 +45,6 @@ RUN cd ~/catkin_ws/src \
  && rosdep install --from-paths src --ignore-src -r -y
 
 RUN cd ~/catkin_ws \
+ && source devel/setup.bash
  && catkin_make \
  && source devel/setup.bash
