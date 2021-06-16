@@ -23,7 +23,6 @@ RUN pip install --upgrade tensorflow
 
 # Install other python packages
 RUN pip install gym
-RUN pip install wandb 
 
 # Install Git
 RUN apt-get update && apt-get install -y git
@@ -42,32 +41,6 @@ RUN source ~/.bashrc
 RUN cd ~/catkin_ws/src \
  && git clone -b version2 https://github.com/ncbdrck/openai_ros_noetic.git \
  && git clone https://ncbdrck@bitbucket.org/theconstructcore/theconstruct_msgs.git \
- && cd ~/catkin_ws \
- && rosdep install --from-paths src --ignore-src -r -y
-
-RUN cd ~/catkin_ws \
- && source devel/setup.bash \
- && catkin_make \
- && source devel/setup.bash
- 
-# Install Robots for the project
-# Fetch robot
-RUN cd ~/catkin_ws/src \
- && git clone -b noetic https://ncbdrck@bitbucket.org/theconstructcore/fetch_tc.git \
- && git clone https://ncbdrck@bitbucket.org/theconstructcore/spawn_robot_tools.git \
- && git clone https://github.com/mikeferguson/simple_grasping.git \
- && cd ~/catkin_ws \
- && rosdep install --from-paths src --ignore-src -r -y
- 
-RUN cd ~/catkin_ws \
- && source devel/setup.bash \
- && catkin_make \
- && source devel/setup.bash
-
-# iri_wam robot
-RUN cd ~/catkin_ws/src \
- && git clone -b noetic https://ncbdrck@bitbucket.org/theconstructcore/iri_wam.git \
- && git clone https://ncbdrck@bitbucket.org/theconstructcore/hokuyo_model.git \
  && cd ~/catkin_ws \
  && rosdep install --from-paths src --ignore-src -r -y
 
