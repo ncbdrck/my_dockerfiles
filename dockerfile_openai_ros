@@ -50,7 +50,7 @@ RUN cd ~/catkin_ws \
  && catkin_make \
  && source devel/setup.bash
  
- # Install Robots for the project
+# Install Robots for the project
 # Fetch robot
 RUN cd ~/catkin_ws/src \
  && git clone -b noetic https://ncbdrck@bitbucket.org/theconstructcore/fetch_tc.git \
