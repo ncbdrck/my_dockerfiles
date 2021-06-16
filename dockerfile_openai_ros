@@ -38,11 +38,14 @@ RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 RUN source ~/.bashrc
 
 # Install openai_ros
-RUN source /opt/ros/noetic/setup.bash \
- && mkdir -p ~/catkin_ws/src \
- && cd ~/catkin_ws/ \
+RUN cd ~/catkin_ws/src \
+ && git clone -b version2 https://github.com/ncbdrck/openai_ros_noetic.git \
+ && git clone https://ncbdrck@bitbucket.org/theconstructcore/theconstruct_msgs.git \
+ && cd ~/catkin_ws \
+ && rosdep install --from-paths src --ignore-src -r -y \
  && catkin_make \
  && source devel/setup.bash
+ 
  
 RUN rosdep install --from-paths src --ignore-src -r -y
 
