@@ -8,7 +8,7 @@ RUN apt-get update
 RUN apt-get install -y ros-noetic-ros-control ros-noetic-ros-controllers ros-noetic-moveit ros-noetic-navigation ros-noetic-perception
 RUN apt-get update
 RUN apt-get install -y ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-fkie-multimaster 
-RUN apt-get update
+# RUN apt-get update
 # RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 
 # Install pip
@@ -47,4 +47,3 @@ RUN cd ~/catkin_ws/src \
 RUN cd ~/catkin_ws \
  && catkin_make \
  && source devel/setup.bash
- 
