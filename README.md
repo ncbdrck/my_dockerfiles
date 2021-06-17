@@ -15,3 +15,8 @@ docker build -f dockerfile_openai_ros -t openai_testv2 .
 docker build -f dockerfile_openai_ros_sim -t openai_ros_sim_v1 .
 docker build -f dockerfile_openai_ros_sim_vnc -t openai_ros_sim_vnc_v1 .
 ```
+
+To create a Docker Container
+```
+docker run --name my-openai-v1 -it -v ~/tmp:/mytmp -p 5910:5910 --gpus all openai_ros_sim_v1
+``
