@@ -1,0 +1,12 @@
+FROM openai_ros_sim_v1:latest
+ 
+# Change the default shell to Bash
+SHELL [ "/bin/bash" , "-c" ]
+
+# Lets also install nano editor. easy edit files
+RUN apt install nano
+
+# First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
+# So inside the docker container
+RUN apt-get update
+RUN apt-get install -y x11vnc xvfb xterm x11-xserver-utils
