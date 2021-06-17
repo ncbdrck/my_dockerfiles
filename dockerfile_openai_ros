@@ -39,7 +39,7 @@ RUN source ~/.bashrc
 
 # Install openai_ros
 RUN cd ~/catkin_ws/src \
- && git clone -b version2 https://github.com/ncbdrck/openai_ros_noetic.git \
+ && git clone -b kinetic-devel https://github.com/ncbdrck/openai_ros.git \
  && git clone https://ncbdrck@bitbucket.org/theconstructcore/theconstruct_msgs.git \
  && cd ~/catkin_ws \
  && rosdep install --from-paths src --ignore-src -r -y
