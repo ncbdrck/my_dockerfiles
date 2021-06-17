@@ -8,12 +8,13 @@ RUN apt-get update
 RUN apt-get install -y ros-noetic-ros-control ros-noetic-ros-controllers ros-noetic-moveit ros-noetic-navigation ros-noetic-perception
 RUN apt-get update
 RUN apt-get install -y ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-fkie-multimaster 
-# RUN apt-get update
-# RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+RUN apt-get update
+RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 
 # Install pip
 RUN apt-get update
 RUN apt-get install -y python3-pip
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Install pytorch
 RUN pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
