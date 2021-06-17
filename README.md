@@ -4,3 +4,13 @@ This repo contains Dockerfiles that will start from the **Nvidia/CUDAGL** image 
 - **dockerfile_openai_ros** contains nvidia_ros with openai_ros framework with Pytorch/Tensorflow
 - **dockerfile_openai_ros_sim** contains openai_testv2 with fecth and iri_wam simulation
 - **dockerfile_openai_ros_sim_vnc** contains openai_ros_sim_v1 with vnc support for visualization
+
+to create thhe Docker Images, execute the following code. 
+```
+git clone https://github.com/ncbdrck/my_dockerfiles.git
+cd my_dockerfiles/ 
+docker build -f dockerfile_nvidia_ros -t nvidia_ros .
+docker build -f dockerfile_openai_ros -t openai_testv2 .
+docker build -f dockerfile_openai_ros_sim -t openai_ros_sim_v1 .
+docker build -f dockerfile_openai_ros_sim_vnc -t openai_ros_sim_vnc_v1 .
+```
