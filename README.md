@@ -5,7 +5,8 @@ This repo contains Dockerfiles that will start from the **Nvidia/CUDAGL** image 
 - **dockerfile_openai_ros_sim** contains openai_testv2 with fecth and iri_wam simulation
 - **dockerfile_openai_ros_sim_vnc** contains openai_ros_sim_v1 with vnc support for visualization
 
-to create thhe Docker Images, execute the following code. 
+To create the Docker Images, execute the following code. 
+
 ```
 git clone https://github.com/ncbdrck/my_dockerfiles.git
 cd my_dockerfiles/ 
