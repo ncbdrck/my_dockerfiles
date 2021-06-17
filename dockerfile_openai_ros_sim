@@ -5,7 +5,7 @@ SHELL [ "/bin/bash" , "-c" ]
 
 # Install ROS packages
 RUN apt-get update
-RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+# RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 
 # Install other python packages
 RUN pip install wandb
