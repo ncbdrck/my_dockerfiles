@@ -4,7 +4,9 @@ FROM openai_ros_sim_v2:latest
 SHELL [ "/bin/bash" , "-c" ]
 
 # Lets also install nano editor. easy edit files
-RUN apt install nano
+RUN apt-get update
+RUN apt install -y nano
+RUN apt install -y gedit
 
 # First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
 # So inside the docker container
