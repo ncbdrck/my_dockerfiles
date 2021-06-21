@@ -20,7 +20,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 
 # Install tensorflow
-RUN pip install --upgrade tensorflow
+RUN pip3 install --upgrade tensorflow-gpu
 
 # Install other python packages
 RUN pip install gym
