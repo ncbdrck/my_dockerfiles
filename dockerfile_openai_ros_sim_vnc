@@ -5,11 +5,11 @@ SHELL [ "/bin/bash" , "-c" ]
 
 # Lets also install nano editor. easy edit files
 RUN apt-get update
-RUN apt install -y nano
-RUN apt install -y gedit
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends nano
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends gedit
 
 # First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
 # So inside the docker container
 RUN apt-get update
-RUN apt-get install -y x11vnc xvfb xterm x11-xserver-utils
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends x11vnc xvfb xterm x11-xserver-utils
 RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends metacity
