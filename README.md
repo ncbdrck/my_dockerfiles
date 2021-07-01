@@ -10,10 +10,10 @@ To create the Docker Images, execute the following code.
 ```
 git clone https://github.com/ncbdrck/my_dockerfiles.git
 cd my_dockerfiles/ 
-docker build -f dockerfile_nvidia_ros -t nvidia_ros .
-docker build -f dockerfile_openai_ros -t openai_testv2 .
-docker build -f dockerfile_openai_ros_sim -t openai_ros_sim_v1 .
-docker build -f dockerfile_openai_ros_sim_vnc -t openai_ros_sim_vnc_v1 .
+docker build -f dockerfile_nvidia_ros -t nvidia_ros_11.1 .
+docker build -f dockerfile_openai_ros -t openai_ros .
+docker build -f dockerfile_openai_ros_sim -t openai_ros_sim .
+docker build -f dockerfile_openai_ros_sim_vnc -t openai_ros_sim_vnc .
 ```
 
 To create a Docker Container
