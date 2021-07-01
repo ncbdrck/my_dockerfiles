@@ -1,4 +1,4 @@
-FROM nvidia_ros:latest
+FROM nvidia_ros_11.1:latest
  
 # Change the default shell to Bash
 SHELL [ "/bin/bash" , "-c" ]
