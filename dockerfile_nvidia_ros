@@ -1,10 +1,14 @@
-FROM nvidia/cudagl:11.1.1-base-ubuntu20.04
- 
+FROM nvidia/cudagl:11.4.0-base-ubuntu20.04
+
 # Minimal setup
 RUN apt-get update \
  && apt-get install -y locales lsb-release
 ARG DEBIAN_FRONTEND=noninteractive
 RUN dpkg-reconfigure locales
+
+# upgrade the packages
+RUN apt-get update
+RUN apt-get upgrade
  
 # Install ROS Noetic
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
