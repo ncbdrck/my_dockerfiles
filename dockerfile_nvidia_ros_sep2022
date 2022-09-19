@@ -91,7 +91,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends x11vnc xvfb xterm x11-xserver-utils
 RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends metacity autocutsel terminator
 # to able to copy and paste from vnc viewer
-RUN autocutsel -s PRIMARY -fork
+# RUN autocutsel -s PRIMARY -fork
 
 # upgrade the packages
 RUN apt-get update
