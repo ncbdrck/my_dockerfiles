@@ -64,13 +64,14 @@ RUN apt-get upgrade -y
 # RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
 
 
-RUN apt-get install -y --no-install-recommends cuda-toolkit-11-2
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends cuda-11-2 libcudnn8=8.1.0.77-1+cuda11.2 libcudnn8-dev=8.1.0.77-1+cuda11.2
+# RUN apt-get install -y --no-install-recommends cuda-toolkit-11-2
+# RUN apt-get update
+# RUN apt-get install -y --no-install-recommends cuda-11-2 libcudnn8=8.1.0.77-1+cuda11.2 libcudnn8-dev=8.1.0.77-1+cuda11.2
 # RUN source ~/.bashrc
-RUN pip install --upgrade pip
-RUN pip install tensorflow
+# RUN pip install --upgrade pip
+# RUN pip install tensorflow
 # RUN pip3 install --upgrade tensorflow-gpu
+# RUN pip install stable-baselines3[extra]
 
 # Install pytorch
 RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
@@ -78,7 +79,7 @@ RUN pip3 install torch torchvision torchaudio --extra-index-url https://download
 # Install other python packages
 RUN pip install gym
 RUN pip install wandb
-RUN pip install stable-baselines3[extra]
+
 
 # Lets also install nano editor. easy edit files
 RUN apt-get update
