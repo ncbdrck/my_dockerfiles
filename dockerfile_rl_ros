@@ -1,4 +1,4 @@
-FROM nvidia_ros_11.4:latest
+FROM nvidia_ros_11.2:latest
  
 # Change the default shell to Bash
 SHELL [ "/bin/bash" , "-c" ]
@@ -13,8 +13,8 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install tensorflow
 # RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
-RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.2.4
-RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
+# RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.2.4
+# RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
 
 # RUN apt-get install -y --no-install-recommends cuda-toolkit-11-2
 # RUN apt-get update
@@ -22,6 +22,6 @@ RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bash
 
 RUN source ~/.bashrc
 RUN pip install --upgrade pip
-RUN pip install tensorflow
-# RUN pip3 install --upgrade tensorflow-gpu
+# RUN pip install tensorflow
+RUN pip3 install --upgrade tensorflow-gpu
 RUN pip install stable-baselines3[extra]
