@@ -12,7 +12,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install tensorflow
-RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+# RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.2.4
 RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
 
 # RUN apt-get install -y --no-install-recommends cuda-toolkit-11-2
