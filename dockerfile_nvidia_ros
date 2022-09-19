@@ -61,7 +61,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install tensorflow
 RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
-RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
+# RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
 RUN source ~/.bashrc
 RUN pip install --upgrade pip
 RUN pip install tensorflow
