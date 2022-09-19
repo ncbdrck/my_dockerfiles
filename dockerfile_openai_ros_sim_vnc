@@ -1,6 +1,0 @@
-FROM openai_ros_sim:latest
- 
-# Change the default shell to Bash
-SHELL [ "/bin/bash" , "-c" ]
-
-
