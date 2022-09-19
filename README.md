@@ -11,6 +11,12 @@ git clone -b sep2022 https://github.com/ncbdrck/my_dockerfiles.git
 cd my_dockerfiles/ 
 docker build -f dockerfile_nvidia_ros_sep2022 -t nvidia_ros_11.4 .
 docker build -f dockerfile_rl_ros -t rl_ros .
+
+cd nvidia/
+docker build -f dockerfile_nvidia_ros_sep2022_v2 -t nvidia_ros_11.2.2 .
+docker build -f dockerfile_rl_ros_v2 -t rl2_ros .
+
+
 ```
 
 To create a Docker Container
@@ -23,6 +29,19 @@ export DISPLAY=:95
 Xvfb $DISPLAY -screen 0 1920x1080x16 &
 x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
+
+
+for the second v2
+
+docker run --name jay-rl2-SEP-2022 -itd -v ~/tmp:/mytmp -p 5997:5997 --gpus all rl2_ros
+docker exec -ti jay-rl2-SEP-2022 bash
+
+export DISPLAY=:97
+Xvfb $DISPLAY -screen 0 1920x1080x16 &
+x11vnc -passwd 1234 -display $DISPLAY -N -forever &
+metacity &
+
+
 ```
 
 leftover
