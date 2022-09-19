@@ -9,7 +9,7 @@ To create the Docker Images, execute the following code.
 cd 
 git clone -b sep2022 https://github.com/ncbdrck/my_dockerfiles.git
 cd my_dockerfiles/ 
-docker build -f dockerfile_nvidia_ros -t nvidia_ros_11.4 .
+docker build -f dockerfile_nvidia_ros_sep2022 -t nvidia_ros_11.4 .
 docker build -f dockerfile_rl_ros -t rl_ros .
 ```
 
