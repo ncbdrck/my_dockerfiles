@@ -3,36 +3,6 @@ FROM openai_ros:latest
 # Change the default shell to Bash
 SHELL [ "/bin/bash" , "-c" ]
 
-# Install ROS packages
-RUN apt-get update
-# RUN apt-get install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 
-# Install other python packages
-RUN pip install wandb
+
  
-# Install Fetch robot
-RUN source /opt/ros/noetic/setup.bash \
- && cd ~/catkin_ws/src \
- && git clone -b noetic https://ncbdrck@bitbucket.org/theconstructcore/fetch_tc.git \
- && git clone https://ncbdrck@bitbucket.org/theconstructcore/spawn_robot_tools.git \
- && git clone https://github.com/mikeferguson/simple_grasping.git \
- && cd ~/catkin_ws \
- && rosdep install --from-paths src --ignore-src -r -y
-
-RUN cd ~/catkin_ws \
- && source devel/setup.bash \
- && catkin_make \
- && source devel/setup.bash
- 
-# Install iri_wam robot
-RUN source /opt/ros/noetic/setup.bash \
- && cd ~/catkin_ws/src \
- && git clone -b noetic https://ncbdrck@bitbucket.org/theconstructcore/iri_wam.git \
- && git clone https://ncbdrck@bitbucket.org/theconstructcore/hokuyo_model.git \
- && cd ~/catkin_ws \
- && rosdep install --from-paths src --ignore-src -r -y
-
-RUN cd ~/catkin_ws \
- && source devel/setup.bash \
- && catkin_make \
- && source devel/setup.bash
