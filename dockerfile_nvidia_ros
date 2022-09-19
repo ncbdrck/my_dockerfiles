@@ -51,22 +51,53 @@ RUN apt-get install -y ros-noetic-rospy-message-converter
 RUN apt-get update
 RUN apt-get upgrade -y
 
-
 # Install tensorflow
-RUN pip3 install --upgrade tensorflow-gpu
-
-
+RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o Miniconda3-latest-Linux-x86_64.sh
+RUN bash Miniconda3-latest-Linux-x86_64.sh
+RUN conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bashrc
+RUN source ~/.bashrc
+RUN pip install --upgrade pip
+RUN pip install tensorflow
+# RUN pip3 install --upgrade tensorflow-gpu
 
 # Install pytorch
 RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 
-
 # Install other python packages
 RUN pip install gym
+RUN pip install wandb
+RUN pip install stable-baselines3[extra]
+
+# Lets also install nano editor. easy edit files
+RUN apt-get update
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends nano gedit 
+
+# First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
+# So inside the docker container
+RUN apt-get update
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends x11vnc xvfb xterm x11-xserver-utils
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends metacity autocutsel terminator
+# to able to copy and paste from vnc viewer
+RUN autocutsel -s PRIMARY -fork
+
+# upgrade the packages
+RUN apt-get update
+RUN apt-get upgrade -y
 
 # Install Git
 RUN apt-get update && apt-get install -y git
- 
+
+# Simulations
+RUN source /opt/ros/noetic/setup.bash \
+ && mkdir -p ~/simulation_ws/src \
+ && cd ~/simulation_ws/ \
+ && catkin_make \
+ && source devel/setup.bash
+
+RUN echo "source ~/simulation_ws/devel/setup.bash" >> ~/.bashrc
+RUN source ~/.bashrc
+
 # Create a Catkin workspace
 RUN source /opt/ros/noetic/setup.bash \
  && mkdir -p ~/catkin_ws/src \
@@ -76,28 +107,3 @@ RUN source /opt/ros/noetic/setup.bash \
 
 RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 RUN source ~/.bashrc
-
-# Install openai_ros
-RUN cd ~/catkin_ws/src \
- && git clone -b kinetic-devel https://github.com/ncbdrck/openai_ros.git \
- && git clone https://ncbdrck@bitbucket.org/theconstructcore/theconstruct_msgs.git \
- && cd ~/catkin_ws \
- && rosdep install --from-paths src --ignore-src -r -y
-
-RUN cd ~/catkin_ws \
- && source devel/setup.bash \
- && catkin_make \
- && source devel/setup.bash
-
-# Lets also install nano editor. easy edit files
-RUN apt-get update
-RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends nano
-RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends gedit
-
-# First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
-# So inside the docker container
-RUN apt-get update
-RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends x11vnc xvfb xterm x11-xserver-utils
-RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends metacity
-
-
