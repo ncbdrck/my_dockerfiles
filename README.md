@@ -16,10 +16,10 @@ docker build -f dockerfile_rl_ros -t rl_ros .
 To create a Docker Container
 
 ```
-docker run --name jay-SEP-2022 -itd -v ~/tmp:/mytmp -p 5992:5992 --gpus all rl_ros
-docker exec -ti jay-SEP-2022 bash
+docker run --name jay-rl-SEP-2022 -itd -v ~/tmp:/mytmp -p 5995:5995 --gpus all rl_ros
+docker exec -ti jay-rl-SEP-2022 bash
 
-export DISPLAY=:92
+export DISPLAY=:95
 Xvfb $DISPLAY -screen 0 1920x1080x16 &
 x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
