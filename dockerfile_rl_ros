@@ -22,7 +22,7 @@ RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/" >> ~/.bash
 RUN source ~/.bashrc
 RUN pip install --upgrade pip
 RUN pip install tensorflow
-RUN pip3 install --upgrade tensorflow-gpu
+# RUN pip3 install --upgrade tensorflow-gpu
 RUN pip install stable-baselines3[extra]
 
 # Simulations
