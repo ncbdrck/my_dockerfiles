@@ -1,23 +1,26 @@
 This repo contains Dockerfiles that will start from the **Nvidia/CUDAGL** image and automatically install ROS Noetic and all the packages to perform OpenAI with ROS.
 
-- **dockerfile_nvidia_ros** contains a clean installation of CUDA with ROS noetic
-- **dockerfile_openai_ros** contains nvidia_ros with openai_ros framework with Pytorch/Tensorflow
-- **dockerfile_openai_ros_sim** contains openai_ros with fecth and iri_wam simulation
-- **dockerfile_openai_ros_sim_vnc** contains openai_ros_ simulations with vnc support for visualization
+- **dockerfile_nvidia_ros** contains a clean installation of CUDA with ROS noetic, Pytorch/Tensorflow and vnc support for visualization
+- **dockerfile_rl_ros** contains nvidia_ros with other packages for rl research
 
 To create the Docker Images, execute the following code. 
 
 ```
-git clone https://github.com/ncbdrck/my_dockerfiles.git
+cd 
+git clone -b sep2022 https://github.com/ncbdrck/my_dockerfiles.git
 cd my_dockerfiles/ 
-docker build -f dockerfile_nvidia_ros -t nvidia_ros_11.1 .
-docker build -f dockerfile_openai_ros -t openai_ros .
-docker build -f dockerfile_openai_ros_sim -t openai_ros_sim .
-docker build -f dockerfile_openai_ros_sim_vnc -t openai_ros_sim_vnc .
+docker build -f dockerfile_nvidia_ros -t nvidia_ros_11.4 .
+docker build -f dockerfile_rl_ros -t rl_ros .
 ```
 
 To create a Docker Container
 
 ```
-docker run --name my-openai-v1 -it -v ~/tmp:/mytmp -p 5910:5910 --gpus all openai_ros_sim_v1
+docker run --name jay-SEP-2022 -itd -v ~/tmp:/mytmp -p 5992:5992 --gpus all rl_ros
+docker exec -ti jay-SEP-2022 bash
+
+export DISPLAY=:92
+Xvfb $DISPLAY -screen 0 1920x1080x16 &
+x11vnc -passwd 1234 -display $DISPLAY -N -forever &
+metacity &
 ```
