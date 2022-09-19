@@ -1,8 +1,0 @@
-FROM openai_ros:latest
- 
-# Change the default shell to Bash
-SHELL [ "/bin/bash" , "-c" ]
-
-
-
- 
