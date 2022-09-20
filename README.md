@@ -12,10 +12,15 @@ cd my_dockerfiles/
 docker build -f dockerfile_nvidia_ros_sep2022 -t nvidia_ros_11.4 .
 docker build -f dockerfile_rl_ros -t rl_ros .
 
+or
+
 cd nvidia/
 docker build -f dockerfile_nvidia_ros_sep2022_v2 -t nvidia_ros_11.2.2 .
 docker build -f dockerfile_rl_ros_v2 -t rl2_ros .
 
+or
+cd tensorflow/
+docker build -f dockerfile_tensor_ros -t tensor_ros_noetic .
 
 ```
 
