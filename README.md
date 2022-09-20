@@ -46,6 +46,14 @@ Xvfb $DISPLAY -screen 0 1920x1080x16 &
 x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
 
+for the tensorflow one
+docker run --name jay-rl-SEP-22 -itd -v ~/tmp:/mytmp -p 5999:5999 --gpus all tensor_ros_noetic
+docker exec -ti jay-rl-SEP-22 bash
+
+export DISPLAY=:97
+Xvfb $DISPLAY -screen 0 1920x1080x16 &
+x11vnc -passwd 1234 -display $DISPLAY -N -forever &
+metacity &
 
 ```
 
