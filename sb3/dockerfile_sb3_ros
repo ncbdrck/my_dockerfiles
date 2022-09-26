@@ -1,0 +1,77 @@
+FROM tensorflow/tensorflow:latest-gpu
+
+# Minimal setup
+RUN apt-get update \
+ && apt-get install -y locales lsb-release
+ARG DEBIAN_FRONTEND=noninteractive
+RUN dpkg-reconfigure locales
+
+ 
+# Install ROS Noetic
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ros-noetic-desktop-full
+RUN apt-get install -y --no-install-recommends python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+RUN apt-get install -y curl wget firefox
+RUN rosdep init \
+ && rosdep fix-permissions \
+ && rosdep update
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+
+# Install pip
+RUN apt-get update
+RUN apt-get install -y python3-pip
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Install ROS packages
+RUN apt-get update
+RUN apt-get install -y git-all python3-colcon-common-extensions python3-vcstool python3-catkin-tools libcanberra-gtk-module libcanberra-gtk3-module 
+RUN apt-get update
+RUN apt-get install -y ros-noetic-moveit ros-noetic-moveit-resources-prbt-moveit-config ros-noetic-pilz-industrial-motion-planner ros-noetic-industrial-core
+RUN apt-get update
+RUN apt-get install -y ros-noetic-rviz-visual-tools ros-noetic-moveit-visual-tools ros-noetic-tf-conversions 
+RUN apt-get update
+RUN apt-get install -y ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control ros-noetic-joint-state-controller ros-noetic-fkie-multimaster
+RUN apt-get update
+RUN apt-get install -y ros-noetic-ros-control ros-noetic-ros-controllers ros-noetic-navigation ros-noetic-perception
+RUN apt-get update
+RUN apt-get install -y ros-noetic-gazebo-ros ros-noetic-control-toolbox ros-noetic-realtime-tools ros-noetic-xacro ros-noetic-kdl-parser
+RUN apt-get update
+RUN apt-get install -y git-core python3-vcstools ros-noetic-control-msgs ros-noetic-xacro ros-noetic-tf2-ros ros-noetic-rviz ros-noetic-cv-bridge
+RUN apt-get update
+RUN apt-get install -y ros-noetic-actionlib ros-noetic-actionlib-msgs ros-noetic-dynamic-reconfigure ros-noetic-trajectory-msgs
+RUN apt-get update
+RUN apt-get install -y ros-noetic-rospy-message-converter python3-tk
+
+# upgrade the packages
+# RUN apt-get update
+# RUN apt-get upgrade -y
+
+# Install pytorch
+# RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+
+# Install other python packages
+# RUN pip install gym
+RUN pip install wandb
+RUN pip install pandas
+# RUN pip install stable-baselines3[extra]
+
+# Lets also install nano editor. easy edit files
+RUN apt-get update
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends nano gedit 
+
+# First we need to install x11vnc inside the docker container, so we can see the GUI from VNC viewver in windows.
+# So inside the docker container
+RUN apt-get update
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends x11vnc xvfb xterm x11-xserver-utils
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends metacity autocutsel terminator sakura
+# to able to copy and paste from vnc viewer
+# RUN autocutsel -s PRIMARY -fork
+
+# upgrade the packages
+# RUN apt-get update
+# RUN apt-get upgrade -y
+
+# Install Git
+RUN apt-get update && apt-get install -y git
