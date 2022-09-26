@@ -14,14 +14,18 @@ docker build -f dockerfile_rl_ros -t rl_ros .
 
 or
 
-cd nvidia/
+cd my_dockerfiles/ nvidia/
 docker build -f dockerfile_nvidia_ros_sep2022_v2 -t nvidia_ros_11.2.2 .
 docker build -f dockerfile_rl_ros_v2 -t rl2_ros .
 
 or
-cd tensorflow/
+cd my_dockerfiles/ tensorflow/
 docker build -f dockerfile_tensor_ros -t tensor_ros_noetic .
 
+
+or
+cd my_dockerfiles/ sb3/
+docker build -f dockerfile_sb3_ros -t sb3_ros_noetic .
 ```
 
 To create a Docker Container
@@ -36,7 +40,7 @@ x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
 
 
-for the second v2
+# for the second v2
 
 docker run --name jay-rl2-SEP-2022 -itd -v ~/tmp:/mytmp -p 5997:5997 --gpus all rl2_ros
 docker exec -ti jay-rl2-SEP-2022 bash
@@ -46,7 +50,7 @@ Xvfb $DISPLAY -screen 0 1920x1080x16 &
 x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
 
-for the tensorflow one
+# for the tensorflow one
 docker run --name jay-rl-SEP-22 -itd -v ~/tmp:/mytmp -p 5999:5999 --gpus all tensor_ros_noetic
 docker exec -ti jay-rl-SEP-22 bash
 
@@ -54,6 +58,16 @@ export DISPLAY=:99
 Xvfb $DISPLAY -screen 0 1920x1080x16 &
 x11vnc -passwd 1234 -display $DISPLAY -N -forever &
 metacity &
+
+# for the sb3 one
+docker run --name jay-sb3-SEP-22 -itd -v ~/tmp:/mytmp -p 5929:5929 --gpus all sb3_ros_noetic
+docker exec -ti jay-sb3-SEP-22 bash
+
+export DISPLAY=:29
+Xvfb $DISPLAY -screen 0 1920x1080x16 &
+x11vnc -passwd 1234 -display $DISPLAY -N -forever &
+metacity &
+
 
 ```
 
