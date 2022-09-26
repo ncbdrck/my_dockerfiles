@@ -14,17 +14,17 @@ docker build -f dockerfile_rl_ros -t rl_ros .
 
 or
 
-cd my_dockerfiles/ nvidia/
+cd my_dockerfiles/nvidia/
 docker build -f dockerfile_nvidia_ros_sep2022_v2 -t nvidia_ros_11.2.2 .
 docker build -f dockerfile_rl_ros_v2 -t rl2_ros .
 
 or
-cd my_dockerfiles/ tensorflow/
+cd my_dockerfiles/tensorflow/
 docker build -f dockerfile_tensor_ros -t tensor_ros_noetic .
 
 
 or
-cd my_dockerfiles/ sb3/
+cd my_dockerfiles/sb3/
 docker build -f dockerfile_sb3_ros -t sb3_ros_noetic .
 ```
 
